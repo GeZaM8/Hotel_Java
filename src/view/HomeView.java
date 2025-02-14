@@ -33,7 +33,6 @@ public class HomeView extends javax.swing.JFrame {
         pageContainer.add(room, "room");
         pageContainer.add(cust, "cust");
         pageContainer.add(book, "book");
-        System.out.println("tes");
         
         cardLayout = (CardLayout) pageContainer.getLayout();
         cardLayout.show(pageContainer, "room");
