@@ -30,7 +30,7 @@ public class BookingDAO {
 
     public ArrayList<Booking> getListBooking() {
         listBooking = new ArrayList<>();
-        String query = "SELECT * FROM booking";
+        String query = "SELECT * FROM bookingtbl";
 
         try {
             ps = con.prepareStatement(query);
