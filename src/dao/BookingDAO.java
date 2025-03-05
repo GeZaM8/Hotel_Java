@@ -30,7 +30,7 @@ public class BookingDAO {
 
     public ArrayList<Booking> getListBooking() {
         listBooking = new ArrayList<>();
-        String query = "SELECT * FROM bookingtbl";
+        String query = "SELECT * FROM booking";
 
         try {
             ps = con.prepareStatement(query);
@@ -90,7 +90,6 @@ public class BookingDAO {
             } else {
                 query = "INSERT INTO booking (Room, Customer, status, BDate, Duration, Cost) VALUES (?, ?, ?, ?, ?, ?)";
             }
-
             ps = con.prepareStatement(query);
             ps.setInt(1, booking.getRoomId());
             ps.setInt(2, booking.getCustomerId());

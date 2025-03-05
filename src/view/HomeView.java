@@ -10,6 +10,7 @@ import java.awt.CardLayout;
 import view.components.PageCustomer;
 import view.components.PageRoom;
 import view.components.PageBooking;
+import view.components.PagePembayaran;
 
 /**
  *
@@ -20,6 +21,7 @@ public class HomeView extends javax.swing.JFrame {
     private PageRoom room = new PageRoom();
     private PageCustomer cust = new PageCustomer();
     private PageBooking book = new PageBooking();
+    private PagePembayaran bayar = new PagePembayaran();
 
     CardLayout cardLayout;
     
@@ -33,11 +35,12 @@ public class HomeView extends javax.swing.JFrame {
         pageContainer.add(room, "room");
         pageContainer.add(cust, "cust");
         pageContainer.add(book, "book");
+        pageContainer.add(bayar, "dashboard");
         
         cardLayout = (CardLayout) pageContainer.getLayout();
-        cardLayout.show(pageContainer, "room");
-        room.refreshData();
-        jLabel10.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 1, true));
+        cardLayout.show(pageContainer, "dashboard");
+        bayar.refreshData();
+        btnDashboard.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 1, true));
     }
 
     /**
@@ -52,10 +55,10 @@ public class HomeView extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         tab = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
+        btnPelanggan = new javax.swing.JLabel();
+        btnRoom = new javax.swing.JLabel();
+        btnBooking = new javax.swing.JLabel();
+        btnDashboard = new javax.swing.JLabel();
         pageContainer = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -80,72 +83,72 @@ public class HomeView extends javax.swing.JFrame {
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("MENU");
 
-        jLabel8.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel8.setText("Pelanggan");
-        jLabel8.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnPelanggan.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        btnPelanggan.setForeground(new java.awt.Color(255, 255, 255));
+        btnPelanggan.setText("Pelanggan");
+        btnPelanggan.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel8MouseClicked(evt);
+                btnPelangganMouseClicked(evt);
             }
         });
 
-        jLabel10.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel10.setText("Room");
-        jLabel10.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnRoom.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        btnRoom.setForeground(new java.awt.Color(255, 255, 255));
+        btnRoom.setText("Room");
+        btnRoom.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel10MouseClicked(evt);
+                btnRoomMouseClicked(evt);
             }
         });
 
-        jLabel11.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel11.setText("Booking");
-        jLabel11.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnBooking.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        btnBooking.setForeground(new java.awt.Color(255, 255, 255));
+        btnBooking.setText("Booking");
+        btnBooking.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel11MouseClicked(evt);
+                btnBookingMouseClicked(evt);
             }
         });
 
-        jLabel12.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel12.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel12.setText("Dashboard");
+        btnDashboard.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        btnDashboard.setForeground(new java.awt.Color(255, 255, 255));
+        btnDashboard.setText("Dashboard");
+        btnDashboard.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnDashboardMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout tabLayout = new javax.swing.GroupLayout(tab);
         tab.setLayout(tabLayout);
         tabLayout.setHorizontalGroup(
             tabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(tabLayout.createSequentialGroup()
-                .addGroup(tabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(53, 53, 53)
+                .addGroup(tabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(tabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(tabLayout.createSequentialGroup()
-                            .addContainerGap()
-                            .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, tabLayout.createSequentialGroup()
-                            .addGap(41, 41, 41)
-                            .addGroup(tabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(tabLayout.createSequentialGroup()
-                                    .addGap(12, 12, 12)
-                                    .addComponent(jLabel5))))))
-                .addContainerGap(64, Short.MAX_VALUE))
+                        .addComponent(btnBooking, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnPelanggan, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(tabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btnRoom, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnDashboard, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jLabel5))
+                .addContainerGap(52, Short.MAX_VALUE))
         );
         tabLayout.setVerticalGroup(
             tabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(tabLayout.createSequentialGroup()
                 .addGap(22, 22, 22)
                 .addComponent(jLabel5)
-                .addGap(74, 74, 74)
-                .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(96, 96, 96)
+                .addComponent(btnDashboard, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnBooking, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnRoom, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(403, Short.MAX_VALUE))
+                .addComponent(btnPelanggan, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(381, Short.MAX_VALUE))
         );
 
         pageContainer.setLayout(new java.awt.CardLayout());
@@ -176,29 +179,41 @@ public class HomeView extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jLabel10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseClicked
+    private void btnRoomMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRoomMouseClicked
         cardLayout.show(pageContainer, "room");
         room.refreshData();
-        jLabel10.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 1, true));
-        jLabel8.setBorder(null);
-        jLabel11.setBorder(null);
-    }//GEN-LAST:event_jLabel10MouseClicked
+        btnRoom.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 1, true));
+        btnPelanggan.setBorder(null);
+        btnBooking.setBorder(null);
+        btnDashboard.setBorder(null);
+    }//GEN-LAST:event_btnRoomMouseClicked
 
-    private void jLabel8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel8MouseClicked
+    private void btnPelangganMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPelangganMouseClicked
         cardLayout.show(pageContainer, "cust");
         cust.refreshData();
-        jLabel8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 1, true));
-        jLabel10.setBorder(null);
-        jLabel11.setBorder(null);
-    }//GEN-LAST:event_jLabel8MouseClicked
+        btnPelanggan.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 1, true));
+        btnRoom.setBorder(null);
+        btnBooking.setBorder(null);
+        btnDashboard.setBorder(null);
+    }//GEN-LAST:event_btnPelangganMouseClicked
 
-    private void jLabel11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel11MouseClicked
+    private void btnBookingMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBookingMouseClicked
         cardLayout.show(pageContainer, "book");
-        cust.refreshData();
-        jLabel11.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 1, true));
-        jLabel8.setBorder(null);
-        jLabel10.setBorder(null);
-    }//GEN-LAST:event_jLabel11MouseClicked
+        book.refreshData();
+        btnBooking.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 1, true));
+        btnPelanggan.setBorder(null);
+        btnRoom.setBorder(null);
+        btnDashboard.setBorder(null);
+    }//GEN-LAST:event_btnBookingMouseClicked
+
+    private void btnDashboardMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDashboardMouseClicked
+        cardLayout.show(pageContainer, "dashboard");
+        bayar.refreshData();
+        btnDashboard.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 1, true));
+        btnPelanggan.setBorder(null);
+        btnRoom.setBorder(null);
+        btnBooking.setBorder(null);
+    }//GEN-LAST:event_btnDashboardMouseClicked
 
     /**
      * @param args the command line arguments
@@ -220,11 +235,11 @@ public class HomeView extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel btnBooking;
+    private javax.swing.JLabel btnDashboard;
+    private javax.swing.JLabel btnPelanggan;
+    private javax.swing.JLabel btnRoom;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel pageContainer;
     private javax.swing.JPanel tab;

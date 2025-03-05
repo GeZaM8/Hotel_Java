@@ -84,7 +84,6 @@ public class PageBooking extends javax.swing.JPanel {
                     String status = tblLookup.getValueAt(selectedRow, 2).toString();
                     InputIdRoom.setText(roomNumber);
                     inputHarga.setText(price);
-                    inputStatus.setText(status);
                 } else {
                     String IdCust = tblLookup.getValueAt(selectedRow, 0).toString();
                     InputIdCustomer.setText(IdCust);
@@ -129,8 +128,6 @@ public class PageBooking extends javax.swing.JPanel {
         Price = new javax.swing.JLabel();
         Look1 = new javax.swing.JButton();
         Look2 = new javax.swing.JButton();
-        jLabel10 = new javax.swing.JLabel();
-        inputStatus = new javax.swing.JTextField();
 
         addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -239,8 +236,6 @@ public class PageBooking extends javax.swing.JPanel {
             }
         });
 
-        jLabel10.setText("Status");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -289,9 +284,7 @@ public class PageBooking extends javax.swing.JPanel {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(btnBatal))
                                     .addComponent(inputDuration, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel8)
-                                    .addComponent(inputStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel10)))
+                                    .addComponent(jLabel8)))
                             .addComponent(Price)
                             .addComponent(inputHarga, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -321,10 +314,8 @@ public class PageBooking extends javax.swing.JPanel {
                     .addComponent(jLabel3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(scrTableBooking, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
+                    .addComponent(scrTableBooking, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(inputIdBook, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -340,11 +331,7 @@ public class PageBooking extends javax.swing.JPanel {
                         .addComponent(InputIdCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(Look2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel10)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(inputStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(18, 18, 18)
                         .addComponent(jLabel8)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(inputDuration, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -360,8 +347,8 @@ public class PageBooking extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnSimpan)
                             .addComponent(btnHapus)
-                            .addComponent(btnBatal))
-                        .addGap(24, 24, 24))))
+                            .addComponent(btnBatal))))
+                .addContainerGap(72, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -370,14 +357,13 @@ public class PageBooking extends javax.swing.JPanel {
             // 1. Ambil Data dari Inputan Form
             int roomId = Integer.parseInt(InputIdRoom.getText());
             int customerId = Integer.parseInt(InputIdCustomer.getText());
-            String status = inputStatus.getText().toString(); // Menggunakan ComboBox untuk status
             java.util.Date utilDate = inputTanggal.getDate(); // Menggunakan JDateChooser
             java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
             int duration = Integer.parseInt(inputDuration.getText());
             int cost = Integer.parseInt(inputHarga.getText());
 
             // 2. Validasi Data
-            if (roomId <= 0 || customerId <= 0 || duration <= 0 || cost <= 0 || status.isEmpty()) {
+            if (roomId <= 0 || customerId <= 0 || duration <= 0 || cost <= 0) {
                 JOptionPane.showMessageDialog(this, "Semua data harus diisi dengan benar!", "Peringatan", JOptionPane.WARNING_MESSAGE);
                 return;
             }
@@ -386,7 +372,7 @@ public class PageBooking extends javax.swing.JPanel {
             Booking booking = new Booking();
             booking.setRoomId(roomId);
             booking.setCustomerId(customerId);
-            booking.setStatus(status);
+            booking.setStatus("Pending");
             booking.setDate(sqlDate);
             booking.setDuration(duration);
             booking.setCost(cost);
@@ -401,7 +387,6 @@ public class PageBooking extends javax.swing.JPanel {
             // 6. Reset Form setelah penyimpanan
             InputIdRoom.setText("");
             InputIdCustomer.setText("");
-            inputStatus.setText(""); // Reset ke default
             inputTanggal.setDate(null);
             inputDuration.setText("");
             inputHarga.setText("");
@@ -415,7 +400,7 @@ public class PageBooking extends javax.swing.JPanel {
     private void btnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHapusActionPerformed
         int id = Integer.parseInt(inputIdBook.getText());
         bookingDAO.deleteBooking(id);
-        refreshTable();
+        refreshData();
         JOptionPane.showMessageDialog(this, "Booking berhasil dihapus!");
     }//GEN-LAST:event_btnHapusActionPerformed
 
@@ -433,7 +418,7 @@ public class PageBooking extends javax.swing.JPanel {
     }//GEN-LAST:event_formFocusGained
 
     private void btnRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefreshActionPerformed
-        refreshTable();
+        refreshData();
     }//GEN-LAST:event_btnRefreshActionPerformed
 
     private void tableBookingMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableBookingMousePressed
@@ -456,7 +441,7 @@ public class PageBooking extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_Look2ActionPerformed
 
-   private void refreshTable() {
+    public void refreshData() {
         tableBooking.setModel(bookingDAO.getModelAllBooking());
     }
     
@@ -477,10 +462,8 @@ public class PageBooking extends javax.swing.JPanel {
     private javax.swing.JTextField inputDuration;
     private javax.swing.JTextField inputHarga;
     private javax.swing.JTextField inputIdBook;
-    private javax.swing.JTextField inputStatus;
     private com.toedter.calendar.JDateChooser inputTanggal;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
