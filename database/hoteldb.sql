@@ -14,23 +14,30 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
+
+-- Dumping database structure for hotel_java
+DROP DATABASE IF EXISTS `hotel_java`;
+CREATE DATABASE IF NOT EXISTS `hotel_java` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci */;
+USE `hotel_java`;
+
 -- Dumping structure for table hotel_java.booking
 DROP TABLE IF EXISTS `booking`;
 CREATE TABLE IF NOT EXISTS `booking` (
-  `BNum` int(11) NOT NULL,
+  `BNum` int(11) NOT NULL AUTO_INCREMENT,
   `Room` int(11) NOT NULL,
   `Customer` int(11) NOT NULL,
-  `BDate` varchar(50) NOT NULL,
+  `BDate` datetime NOT NULL,
   `Duration` int(11) NOT NULL,
   `Cost` int(11) NOT NULL,
+  `status` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`BNum`),
   KEY `Room` (`Room`),
   KEY `Customer` (`Customer`),
   CONSTRAINT `booking_ibfk_1` FOREIGN KEY (`Room`) REFERENCES `rooms` (`RNum`),
   CONSTRAINT `booking_ibfk_2` FOREIGN KEY (`Customer`) REFERENCES `customers` (`CustNum`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table hotel_java.booking: ~0 rows (approximately)
+-- Data exporting was unselected.
 
 -- Dumping structure for table hotel_java.customers
 DROP TABLE IF EXISTS `customers`;
@@ -45,9 +52,32 @@ CREATE TABLE IF NOT EXISTS `customers` (
   PRIMARY KEY (`CustNum`),
   KEY `FK_UserID` (`UserID`),
   CONSTRAINT `FK_UserID` FOREIGN KEY (`UserID`) REFERENCES `users` (`UserID`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table hotel_java.customers: ~0 rows (approximately)
+-- Data exporting was unselected.
+
+-- Dumping structure for table hotel_java.pembayaran
+DROP TABLE IF EXISTS `pembayaran`;
+CREATE TABLE IF NOT EXISTS `pembayaran` (
+  `id_pembayaran` int(11) NOT NULL AUTO_INCREMENT,
+  `id_booking` int(11) NOT NULL,
+  `id_room` int(11) NOT NULL,
+  `id_customer` int(11) NOT NULL,
+  `status` varchar(50) DEFAULT NULL,
+  `duration` int(11) DEFAULT NULL,
+  `tanggal_booking` date DEFAULT NULL,
+  `price` decimal(10,2) DEFAULT NULL,
+  `metode_pembayaran` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`id_pembayaran`),
+  KEY `FK_pembayaran_booking` (`id_booking`),
+  KEY `FK_pembayaran_rooms` (`id_room`),
+  KEY `FK_pembayaran_customers` (`id_customer`),
+  CONSTRAINT `FK_pembayaran_booking` FOREIGN KEY (`id_booking`) REFERENCES `booking` (`BNum`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `FK_pembayaran_customers` FOREIGN KEY (`id_customer`) REFERENCES `customers` (`CustNum`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `FK_pembayaran_rooms` FOREIGN KEY (`id_room`) REFERENCES `rooms` (`RNum`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- Data exporting was unselected.
 
 -- Dumping structure for table hotel_java.rooms
 DROP TABLE IF EXISTS `rooms`;
@@ -58,15 +88,9 @@ CREATE TABLE IF NOT EXISTS `rooms` (
   `RStatus` varchar(20) NOT NULL,
   `Price` int(11) NOT NULL,
   PRIMARY KEY (`RNum`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table hotel_java.rooms: ~6 rows (approximately)
-INSERT INTO `rooms` (`RNum`, `RName`, `RType`, `RStatus`, `Price`) VALUES
-	(1, 'Standard Room', 'Standard', 'Tersedia', 100),
-	(2, 'Deluxe Room', 'Deluxe', 'Tidak Tersedia', 200),
-	(3, 'Suite', 'Suite', 'Perbaikan', 300),
-	(4, 'Executive Room', 'Executive', 'Tersedia', 250),
-	(5, 'Family Room', 'Family', 'Tersedia', 150);
+-- Data exporting was unselected.
 
 -- Dumping structure for table hotel_java.users
 DROP TABLE IF EXISTS `users`;
@@ -78,11 +102,9 @@ CREATE TABLE IF NOT EXISTS `users` (
   `Email` varchar(100) NOT NULL,
   PRIMARY KEY (`UserID`),
   UNIQUE KEY `Email` (`Email`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table hotel_java.users: ~0 rows (approximately)
-INSERT INTO `users` (`UserID`, `Username`, `Password`, `Role`, `Email`) VALUES
-	(1, 'admin', 'admin', 'admin', 'admin@gmail.com');
+-- Data exporting was unselected.
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
