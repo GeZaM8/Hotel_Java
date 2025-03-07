@@ -7,6 +7,10 @@ package view;
 
 import dao.RoomDAO;
 import java.awt.CardLayout;
+import java.awt.Color;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import javax.swing.JLabel;
 import view.components.PageCustomer;
 import view.components.PageRoom;
 import view.components.PageBooking;
@@ -27,11 +31,16 @@ public class HomeView extends javax.swing.JFrame {
     
     RoomDAO roomDAO;
 
+    private Color defaultColor = new Color(240, 240, 240); // Default background color
+    private Color hoverColor = new Color(200, 200, 200);   // Hover background color
+    private Color selectedColor = new Color(180, 180, 180); // Selected background color
+    
     /**
      * Creates new form Room
      */
     public HomeView() {
         initComponents();
+        initHoverEffects();
         pageContainer.add(room, "room");
         pageContainer.add(cust, "cust");
         pageContainer.add(book, "book");
@@ -81,10 +90,13 @@ public class HomeView extends javax.swing.JFrame {
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setText("MENU");
 
+        btnPelanggan.setBackground(new java.awt.Color(30, 62, 98));
         btnPelanggan.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         btnPelanggan.setForeground(new java.awt.Color(255, 255, 255));
+        btnPelanggan.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         btnPelanggan.setText("Pelanggan");
         btnPelanggan.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -92,8 +104,10 @@ public class HomeView extends javax.swing.JFrame {
             }
         });
 
+        btnRoom.setBackground(new java.awt.Color(30, 62, 98));
         btnRoom.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         btnRoom.setForeground(new java.awt.Color(255, 255, 255));
+        btnRoom.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         btnRoom.setText("Room");
         btnRoom.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -101,8 +115,10 @@ public class HomeView extends javax.swing.JFrame {
             }
         });
 
+        btnBooking.setBackground(new java.awt.Color(30, 62, 98));
         btnBooking.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         btnBooking.setForeground(new java.awt.Color(255, 255, 255));
+        btnBooking.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         btnBooking.setText("Booking");
         btnBooking.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -110,8 +126,10 @@ public class HomeView extends javax.swing.JFrame {
             }
         });
 
+        btnDashboard.setBackground(new java.awt.Color(30, 62, 98));
         btnDashboard.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         btnDashboard.setForeground(new java.awt.Color(255, 255, 255));
+        btnDashboard.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         btnDashboard.setText("Dashboard");
         btnDashboard.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -123,17 +141,11 @@ public class HomeView extends javax.swing.JFrame {
         tab.setLayout(tabLayout);
         tabLayout.setHorizontalGroup(
             tabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(tabLayout.createSequentialGroup()
-                .addGap(53, 53, 53)
-                .addGroup(tabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(tabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(btnBooking, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnPelanggan, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(tabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(btnRoom, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnDashboard, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jLabel5))
-                .addContainerGap(52, Short.MAX_VALUE))
+            .addComponent(btnDashboard, javax.swing.GroupLayout.DEFAULT_SIZE, 195, Short.MAX_VALUE)
+            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(btnBooking, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(btnRoom, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(btnPelanggan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         tabLayout.setVerticalGroup(
             tabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -141,14 +153,14 @@ public class HomeView extends javax.swing.JFrame {
                 .addGap(22, 22, 22)
                 .addComponent(jLabel5)
                 .addGap(96, 96, 96)
-                .addComponent(btnDashboard, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnBooking, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnRoom, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnPelanggan, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(381, Short.MAX_VALUE))
+                .addComponent(btnDashboard, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnBooking, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnRoom, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnPelanggan, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(375, Short.MAX_VALUE))
         );
 
         pageContainer.setLayout(new java.awt.CardLayout());
@@ -215,6 +227,21 @@ public class HomeView extends javax.swing.JFrame {
         btnBooking.setBorder(null);
     }//GEN-LAST:event_btnDashboardMouseClicked
 
+    private void addHoverEffect(JLabel label) {
+        label.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                label.setBorder(javax.swing.BorderFactory.createLineBorder(new Color(200, 200, 200), 1, true)); // Lighter border on hover
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                if (label.getBorder() == null) { // Only reset if it's not selected
+                    label.setBorder(null);
+                }
+            }
+        });
+    }
     /**
      * @param args the command line arguments
      */
@@ -232,6 +259,13 @@ public class HomeView extends javax.swing.JFrame {
                 new HomeView().setVisible(true);
             }
         });
+    }
+    
+    private void initHoverEffects() {
+        addHoverEffect(btnRoom);
+        addHoverEffect(btnPelanggan);
+        addHoverEffect(btnBooking);
+        addHoverEffect(btnDashboard);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
